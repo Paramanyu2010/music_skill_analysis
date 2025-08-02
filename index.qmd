@@ -6,10 +6,10 @@ execute:
   echo: false # This setting hides all R code from displaying in the output by default
 ---
 
-# The Musician's Journey: Factors Shaping Skill and Practice
-
 ```{r}
 #| label: setup-libraries
+#| message: false
+#| warning: false
 # Load necessary libraries for data analysis, modeling, and plotting
 library(tidyverse)
 library(readr)
@@ -65,7 +65,6 @@ fit_performance <- linear_reg() %>%
 #| label: performance-vs-practice-plot
 #| message: false
 #| warning: false
-#| fig-cap: "Relationship Between Practice Duration and Performance Score by Instrument and Theory Lessons"
 #| fig-width: 14 # Increased width to accommodate 6 panels better
 #| fig-height: 9 # Increased height for better panel layout
 
@@ -90,6 +89,7 @@ ggplot(music_data_for_faceted_plot, aes(x = practice_duration_min, y = performan
     plot.subtitle = element_text(margin = margin(b = 15)), # More space below subtitle
     strip.text = element_text(face = "bold", margin = margin(b = 5, t = 5)), # Space around facet titles
     panel.spacing = unit(1.5, "lines"), # Space between individual plot panels
+    panel.border = element_rect(colour = "black", fill = NA, linewidth = 0.5), # Added simple black borders to panels
     plot.margin = unit(c(1, 1, 1, 1), "lines"), # Margin around the entire plot area
     axis.title.x = element_text(margin = margin(t = 10)), # Space above x-axis title
     axis.title.y = element_text(margin = margin(r = 10))  # Space right of y-axis title
