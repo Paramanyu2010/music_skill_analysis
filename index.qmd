@@ -1,0 +1,82 @@
+---
+title: "The Musician's Journey: Factors Shaping Skill and Practice"
+author: "Paramanyu Gupta"
+format: html
+execute:
+  echo: false # This setting hides all R code from displaying in the output by default
+---
+
+# The Musician's Journey: Factors Shaping Skill and Practice
+
+```{r}
+#| label: setup-libraries
+# Load necessary libraries for data analysis, modeling, and plotting
+library(tidyverse)
+library(readr)
+library(tidymodels)
+library(marginaleffects)
+library(broom)
+```
+
+
+```{r}
+#| label: data-generating-mechanism
+#| include: false # This hides both the code and any output of this chunk from the final document
+
+# Load the raw dataset
+data_path <- "data/music_performance_evaluation_data.csv"
+music_data <- read_csv(data_path)
+
+# Data preparation for the linear regression model and plotting.
+# Rename columns for clarity and convert categorical variables to factors.
+music_data_cleaned <- music_data %>%
+  rename(
+    instrument = Instrument,
+    practice_duration_min = `Focus_Time (min)`, # Retained in minutes
+    performance_score = Performance_Score,
+    gender = Gender,
+    learning_level = Class_Level,
+    lesson_context = Lesson_Type # Renaming Lesson_Type for clarity
+  ) %>%
+  mutate(
+    instrument = as.factor(instrument),
+    gender = as.factor(gender),
+    learning_level = factor(learning_level, levels = c("Beginner", "Intermediate", "Advanced"), ordered = TRUE),
+    lesson_context = as.factor(lesson_context)
+  ) %>%
+  # Filter out potentially erroneous scores over 100% for a cleaner visualization
+  filter(performance_score <= 100)
+
+# The fit_performance model remains here as the Data Generating Mechanism
+fit_performance <- linear_reg() %>%
+  fit(performance_score ~ Age + gender + practice_duration_min + instrument, data = music_data_cleaned)
+```
+
+```{r}
+#| label: performance-vs-practice-plot
+#| message: false
+#| warning: false
+#| fig-cap: "Relationship Between Practice Duration and Performance Score by Individual Instrument"
+#| fig-width: 12
+#| fig-height: 7
+
+# Plot to show the linear relationship between practice and performance for each instrument,
+# with trends only and no individual data points (dots).
+ggplot(music_data_cleaned, aes(x = practice_duration_min, y = performance_score, color = instrument)) +
+  geom_smooth(method = "lm", se = FALSE, linewidth = 1.2) + # Linear trend line without confidence interval, dots removed
+  facet_wrap(~ instrument, scales = "free_x", ncol = 3) + # Facet by instrument for clear individual views
+  labs(
+    title = "Practice Duration and Performance Score Trends by Instrument",
+    subtitle = "For this dataset of high-performing students, individual instrument trends between practice time and score are subtle, with some showing slight positive association and others appearing flat or slightly negative. Data points are removed for a cleaner visual.",
+    x = "Practice Duration (Minutes)",
+    y = "Overall Performance Score (0-100%)",
+    color = "Instrument"
+  ) +
+  theme_minimal(base_size = 14) +
+  scale_color_brewer(palette = "Set1") + # A distinct palette for instruments
+  theme(
+    legend.position = "bottom",
+    plot.title.position = "plot",
+    strip.text = element_text(face = "bold") # Make facet titles bold
+  )
+```
