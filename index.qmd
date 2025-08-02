@@ -75,8 +75,8 @@ ggplot(music_data_for_faceted_plot, aes(x = practice_duration_min, y = performan
   geom_smooth(method = "lm", se = FALSE, linewidth = 1.2) + # Linear trend line without confidence interval, no dots
   facet_wrap(~ plot_category, scales = "free_x", ncol = 3) + # Facet by the new plot_category
   labs(
-    title = "Practice Duration and Performance Score Trends by Category",
-    subtitle = "Separate panels show the linear trends for each instrument and for 'Theory Lessons'. Data points are removed for a cleaner visual.",
+    title = "Relationship Between Practice Duration and Performance Score",
+    subtitle = "For many categories, increased practice duration is linked to improved performance, emphasizing the value of dedicated training in musical skill development.",
     x = "Practice Duration (Minutes)",
     y = "Overall Performance Score (0-100%)",
     color = "Category" # Changed legend title to reflect combined categories
@@ -86,6 +86,12 @@ ggplot(music_data_for_faceted_plot, aes(x = practice_duration_min, y = performan
   theme(
     legend.position = "bottom",
     plot.title.position = "plot",
-    strip.text = element_text(face = "bold") # Make facet titles bold
+    plot.title = element_text(margin = margin(b = 10)), # More space below main title
+    plot.subtitle = element_text(margin = margin(b = 15)), # More space below subtitle
+    strip.text = element_text(face = "bold", margin = margin(b = 5, t = 5)), # Space around facet titles
+    panel.spacing = unit(1.5, "lines"), # Space between individual plot panels
+    plot.margin = unit(c(1, 1, 1, 1), "lines"), # Margin around the entire plot area
+    axis.title.x = element_text(margin = margin(t = 10)), # Space above x-axis title
+    axis.title.y = element_text(margin = margin(r = 10))  # Space right of y-axis title
   )
 ```
