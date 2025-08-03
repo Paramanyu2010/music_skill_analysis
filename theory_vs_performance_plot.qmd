@@ -1,20 +1,21 @@
 ---
 title: "Impact of Theory Lesson Engagement on Performance Scores"
-author: "Paramanyu Gupta"
 format: html
 execute:
   echo: false # Hides all R code from displaying in the output by default
 ---
 
-# Impact of Theory Lesson Engagement on Performance Scores
-
-This document explores the relationship between time dedicated to theory lessons and a musician's overall performance score. The visualization categorizes observations by learning level to reveal nuanced trends within different stages of musical development.
+<br>
 
 ```{r}
 #| label: setup-libraries
+#| message: false
+#| warning: false
 # Load necessary libraries for data analysis and plotting
 library(tidyverse)
 library(readr)
+library(plotly) # For interactive plots
+library(broom) # For tidying model output to get line equation
 ```
 
 ```{r}
@@ -33,11 +34,12 @@ music_data_cleaned <- music_data %>%
     practice_duration_min = `Focus_Time (min)`, # Retained in minutes
     performance_score = Performance_Score,
     learning_level = Class_Level,
-    lesson_context = Lesson_Type # Renaming Lesson_Type for clarity
+    lesson_context = Lesson_Type, # Renaming Lesson_Type for clarity
+    age = Age # Include age for potential hover info
   ) %>%
   mutate(
-    instrument = as.factor(Instrument), # Ensure 'instrument' is also a factor for completeness
-    gender = as.factor(Gender), # Ensure 'gender' is a factor
+    instrument = as.factor(Instrument),
+    gender = as.factor(Gender),
     learning_level = factor(learning_level, levels = c("Beginner", "Intermediate", "Advanced"), ordered = TRUE),
     lesson_context = as.factor(lesson_context)
   ) %>%
@@ -47,41 +49,108 @@ music_data_cleaned <- music_data %>%
 
 ```{r}
 #| label: theory-lessons-vs-performance-plot
-#| message: false
-#| warning: false
-#| fig-cap: "Impact of Theory Lesson Engagement on Performance Scores, by Learning Level"
+#| warning: false # Keep warning: false if you get any warnings you want to suppress
 #| fig-width: 10
 #| fig-height: 7
 
 # Filter data specifically for 'Theory' lessons
-# The 'practice_duration_min' is currently used as a proxy for engagement/duration in theory.
-# If your raw data contains a column like 'Number_of_Theory_Lessons',
-# you should use that for the x-axis instead for a more direct interpretation.
 theory_data <- music_data_cleaned %>%
   filter(lesson_context == "Theory")
 
-ggplot(theory_data, aes(x = practice_duration_min, y = performance_score)) +
-  geom_point(aes(color = learning_level), alpha = 0.7, size = 3) + # Points colored by learning level
-  geom_smooth(method = "lm", se = FALSE, color = "darkblue", linewidth = 1.2) + # Overall linear trend line
+# --- Fit the linear model to get predictions for the line ---
+lm_model <- lm(performance_score ~ practice_duration_min, data = theory_data)
+# Create a data frame for predictions for the line
+line_data <- data.frame(
+  practice_duration_min = seq(min(theory_data$practice_duration_min, na.rm = TRUE),
+                              max(theory_data$practice_duration_min, na.rm = TRUE),
+                              length.out = 100) # Generate 100 points for a smooth line
+)
+line_data$predicted_score <- predict(lm_model, newdata = line_data)
+
+# Create the base ggplot object for points
+p <- ggplot(theory_data, aes(
+  x = practice_duration_min,
+  y = performance_score,
+  color = learning_level,
+  # Add variables for point hover text (tooltip)
+  text = paste(
+    "Engagement: ", practice_duration_min, "min<br>",
+    "Score: ", performance_score, "%<br>",
+    "Level: ", learning_level, "<br>",
+    "Age: ", age
+  )
+)) +
+  geom_point(alpha = 0.7, size = 3) + # Points colored by learning level
   labs(
-    title = "Engagement in Theory Lessons vs. Performance Score",
-    subtitle = "This scatter plot illustrates how increased time dedicated to theory lessons correlates with higher performance scores. Points are colored by learning level (Beginner, Intermediate, Advanced), showing the distribution and trend within each stage. A single regression line indicates the overall linear relationship.",
-    x = "Theory Engagement (Minutes)", # Label adjusted to reflect proxy usage; change if using direct count
+    title = "Engagement in Theory Lessons vs. Performance Score", # Keep this for ggplot's internal title handling
+    x = "Theory Engagement (Minutes)",
     y = "Overall Performance Score (0-100%)",
     color = "Learning Level" # Legend title for the colored points
   ) +
   theme_minimal(base_size = 14) +
-  scale_color_brewer(palette = "Paired") + # A distinct and visually appealing palette for learning levels
+  scale_color_brewer(palette = "Paired") +
   theme(
     legend.position = "bottom",
     plot.title.position = "plot",
-    plot.title = element_text(margin = margin(b = 10), face = "bold"), # Make title bold
-    plot.subtitle = element_text(margin = margin(b = 15)),
+    plot.title = element_text(margin = margin(b = 10), face = "bold"),
     axis.title.x = element_text(margin = margin(t = 10)),
     axis.title.y = element_text(margin = margin(r = 10)),
-    panel.border = element_rect(color = "black", fill = NA, linewidth = 0.8), # Add a border around the entire plot area
-    panel.grid.minor = element_blank() # Remove minor grid lines for a cleaner look
+    axis.text.y = element_text(margin = margin(r = 1.5, unit = "cm")), # Shift Y-axis numbers left
+    panel.border = element_rect(color = "black", fill = NA, linewidth = 0.8),
+    panel.grid.minor = element_blank()
   )
+
+# Convert to plotly object and then add the line trace explicitly
+fig <- ggplotly(p, tooltip = "text") %>%
+  add_lines(
+    data = line_data,
+    x = ~practice_duration_min,
+    y = ~predicted_score,
+    mode = "lines",
+    line = list(color = "darkblue", width = 2),
+    name = "Trend Line",
+    hoverinfo = "text",
+    text = ~paste("Engagement: ", practice_duration_min, "min<br>",
+                  "Predicted Score: ", round(predicted_score, 2), "%")
+  ) %>%
+  layout(
+    # Explicitly define the main plot title in Plotly layout for control
+    title = list(
+      text = "Engagement in Theory Lessons vs. Performance Score",
+      font = list(size = 20),
+      x = 0, # Center title horizontally
+      xanchor = 'left',
+      y = 0.98, # Adjust Y for title position if needed (0 to 1, relative to paper)
+      yanchor = 'top'
+    ),
+    # Use annotations for a custom subtitle
+    annotations = list(
+      list(
+        x = 0, # Start near the left edge for alignment with main title if title is left-aligned
+        y = 1.07, # Position below the main title (adjust as needed)
+        xref = "paper",
+        yref = "paper",
+        text = "Despite individual variations, theory appears to boost musical skill.", # Short takeaway phrase
+        showarrow = FALSE,
+        font = list(size = 13), # Font size for subtitle
+        align = "left", # Align text to the left
+        xanchor = 'left', # Anchor from the left
+        yanchor = 'top' # Anchor from the top
+      )
+    ),
+    xaxis = list(title = list(font = list(size = 16))),
+    yaxis = list(title = list(font = list(size = 16))),
+    legend = list(
+      font = list(size = 12),
+      title = list(font = list(size = 14)),
+      y = -0.2 # Adjust legend position
+    )
+  ) %>%
+  config(displayModeBar = FALSE) # Optionally remove plotly mode bar for cleaner look
+
+fig # Display the plotly object
 ```
+
+<br>
 
 This plot shows how time spent on music theory lessons relates to a musician's performance score. The horizontal axis represents the minutes spent on theory, and the vertical axis displays the performance score, from 0 to 100%. Each dot on the plot is an individual musician's data, with different colors for Beginner, Intermediate, and Advanced learning levels. While the dots are spread out, which highlights that everyone learns a bit differently and progresses at their own pace, there's a clear upward trend. This trend line suggests that generally, more time put into theory lessons leads to slightly better performance scores. So, even with individual variations, understanding music theory seems to give a small but consistent boost to overall musical skill.
