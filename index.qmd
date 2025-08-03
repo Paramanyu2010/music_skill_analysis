@@ -47,7 +47,7 @@ music_data_cleaned <- music_data %>%
   filter(performance_score <= 100)
 
 # Prepare data for the faceted plot, creating a 'plot_category' that includes instruments and Theory
-music_data_for_faceted_plot <- music_data_cleaned %>%
+music_data_for_faceted_plot <- music_data_cleaned |>
   mutate(
     plot_category = case_when(
       lesson_context == "Practical" ~ as.character(instrument), # Use instrument name for practical lessons
