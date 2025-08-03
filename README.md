@@ -21,7 +21,6 @@ The core of this project lies in investigating how different inputs contribute t
 This project includes several plots to provide a multifaceted view of the data. Here are some examples:
 
 * **Faceted Line Graphs: Practice Hours vs. Performance Score:** This series of plots vividly illustrates the positive correlation between dedicated practice time (X-axis) and achieved performance scores (Y-axis) for various instruments.
-* **Bar Chart: Average Scores by Instrument:** A bar chart comparing the average performance scores across different musical instruments, highlighting areas of relative difficulty or common proficiency levels.
 * **Scatter Plot: Theory Lessons vs. Performance Growth:** A scatter plot exploring the relationship between the number of theory lessons taken (X-axis) and the observed improvement in performance scores (Y-axis), revealing the impact of foundational knowledge.
 
 More detailed descriptions of each plot can be found within the analysis notebooks.

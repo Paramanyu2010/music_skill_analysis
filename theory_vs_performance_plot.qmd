@@ -1,0 +1,87 @@
+---
+title: "Impact of Theory Lesson Engagement on Performance Scores"
+author: "Paramanyu Gupta"
+format: html
+execute:
+  echo: false # Hides all R code from displaying in the output by default
+---
+
+# Impact of Theory Lesson Engagement on Performance Scores
+
+This document explores the relationship between time dedicated to theory lessons and a musician's overall performance score. The visualization categorizes observations by learning level to reveal nuanced trends within different stages of musical development.
+
+```{r}
+#| label: setup-libraries
+# Load necessary libraries for data analysis and plotting
+library(tidyverse)
+library(readr)
+```
+
+```{r}
+#| label: load-and-prepare-data
+#| include: false # Hides both the code and any output of this chunk from the final document
+
+# Load the raw dataset (adjust path if needed relative to this .qmd file)
+# Make sure 'data/music_performance_evaluation_data.csv' is accessible.
+data_path <- "data/music_performance_evaluation_data.csv"
+music_data <- read_csv(data_path)
+
+# Data preparation for plotting.
+# Rename columns for clarity and convert categorical variables to factors.
+music_data_cleaned <- music_data %>%
+  rename(
+    practice_duration_min = `Focus_Time (min)`, # Retained in minutes
+    performance_score = Performance_Score,
+    learning_level = Class_Level,
+    lesson_context = Lesson_Type # Renaming Lesson_Type for clarity
+  ) %>%
+  mutate(
+    instrument = as.factor(Instrument), # Ensure 'instrument' is also a factor for completeness
+    gender = as.factor(Gender), # Ensure 'gender' is a factor
+    learning_level = factor(learning_level, levels = c("Beginner", "Intermediate", "Advanced"), ordered = TRUE),
+    lesson_context = as.factor(lesson_context)
+  ) %>%
+  # Filter out potentially erroneous scores over 100% for a cleaner visualization
+  filter(performance_score <= 100)
+```
+
+```{r}
+#| label: theory-lessons-vs-performance-plot
+#| message: false
+#| warning: false
+#| fig-cap: "Impact of Theory Lesson Engagement on Performance Scores, by Learning Level"
+#| fig-width: 10
+#| fig-height: 7
+
+# Filter data specifically for 'Theory' lessons
+# The 'practice_duration_min' is currently used as a proxy for engagement/duration in theory.
+# If your raw data contains a column like 'Number_of_Theory_Lessons',
+# you should use that for the x-axis instead for a more direct interpretation.
+theory_data <- music_data_cleaned %>%
+  filter(lesson_context == "Theory")
+
+ggplot(theory_data, aes(x = practice_duration_min, y = performance_score)) +
+  geom_point(aes(color = learning_level), alpha = 0.7, size = 3) + # Points colored by learning level
+  geom_smooth(method = "lm", se = FALSE, color = "darkblue", linewidth = 1.2) + # Overall linear trend line
+  labs(
+    title = "Engagement in Theory Lessons vs. Performance Score",
+    subtitle = "This scatter plot illustrates how increased time dedicated to theory lessons correlates with higher performance scores. Points are colored by learning level (Beginner, Intermediate, Advanced), showing the distribution and trend within each stage. A single regression line indicates the overall linear relationship.",
+    x = "Theory Engagement (Minutes)", # Label adjusted to reflect proxy usage; change if using direct count
+    y = "Overall Performance Score (0-100%)",
+    color = "Learning Level" # Legend title for the colored points
+  ) +
+  theme_minimal(base_size = 14) +
+  scale_color_brewer(palette = "Paired") + # A distinct and visually appealing palette for learning levels
+  theme(
+    legend.position = "bottom",
+    plot.title.position = "plot",
+    plot.title = element_text(margin = margin(b = 10), face = "bold"), # Make title bold
+    plot.subtitle = element_text(margin = margin(b = 15)),
+    axis.title.x = element_text(margin = margin(t = 10)),
+    axis.title.y = element_text(margin = margin(r = 10)),
+    panel.border = element_rect(color = "black", fill = NA, linewidth = 0.8), # Add a border around the entire plot area
+    panel.grid.minor = element_blank() # Remove minor grid lines for a cleaner look
+  )
+```
+
+This plot shows how time spent on music theory lessons relates to a musician's performance score. The horizontal axis represents the minutes spent on theory, and the vertical axis displays the performance score, from 0 to 100%. Each dot on the plot is an individual musician's data, with different colors for Beginner, Intermediate, and Advanced learning levels. While the dots are spread out, which highlights that everyone learns a bit differently and progresses at their own pace, there's a clear upward trend. This trend line suggests that generally, more time put into theory lessons leads to slightly better performance scores. So, even with individual variations, understanding music theory seems to give a small but consistent boost to overall musical skill.
