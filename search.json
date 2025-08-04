@@ -7,11 +7,25 @@
     "text": "This plot shows how time spent on music theory lessons relates to a musician’s performance score. The horizontal axis represents the minutes spent on theory, and the vertical axis displays the performance score, from 0 to 100%. Each dot on the plot is an individual musician’s data, with different colors for Beginner, Intermediate, and Advanced learning levels. While the dots are spread out, which highlights that everyone learns a bit differently and progresses at their own pace, there’s a clear upward trend. This trend line suggests that generally, more time put into theory lessons leads to slightly better performance scores. So, even with individual variations, understanding music theory seems to give a small but consistent boost to overall musical skill."
   },
   {
+    "objectID": "model.html",
+    "href": "model.html",
+    "title": "Understanding the Performance Model",
+    "section": "",
+    "text": "This section describes the formula we used to understand how different factors relate to a musician’s overall performance score. Instead of just looking at one thing, we used a comprehensive model to analyze several predictors at the same time, including a musician’s age, gender, amount of practice, and the instrument or lesson type they are focusing on. This helps us get a more complete picture of what influences performance.\nThis model is a mathematical representation of the trends you see in the plot on the home page.\n\n\nThe formula we used to predict a musician’s performance score looks like this:\n\\[\n\\text{Performance Score}_i = \\beta_0 + \\beta_1 \\cdot \\text{Age}_i + \\beta_2 \\cdot \\text{Gender}_i + \\beta_3 \\cdot \\text{Practice Duration}_i + \\beta_4 \\cdot \\text{Instrument}_i + \\epsilon_i\n\\]\nHere’s a simple breakdown of what each part of the formula represents:\n\n\\(\\text{Performance Score}_i\\): This is the predicted score for a specific musician.\n\\(\\beta_0\\): This is the starting score for a musician, before considering any other factors.\n\\(\\beta_1\\): This represents the adjustment to the score based on a musician’s age.\n\\(\\beta_2\\): This represents the adjustment to the score based on a musician’s gender.\n\\(\\beta_3\\): This represents the adjustment to the score for the duration of practice.\n\\(\\beta_4\\): This represents the adjustment to the score for the specific instrument they play.\n\\(\\epsilon_i\\): This is a small adjustment for all the random factors that the model doesn’t account for."
+  },
+  {
+    "objectID": "model.html#model-specification",
+    "href": "model.html#model-specification",
+    "title": "Understanding the Performance Model",
+    "section": "",
+    "text": "The formula we used to predict a musician’s performance score looks like this:\n\\[\n\\text{Performance Score}_i = \\beta_0 + \\beta_1 \\cdot \\text{Age}_i + \\beta_2 \\cdot \\text{Gender}_i + \\beta_3 \\cdot \\text{Practice Duration}_i + \\beta_4 \\cdot \\text{Instrument}_i + \\epsilon_i\n\\]\nHere’s a simple breakdown of what each part of the formula represents:\n\n\\(\\text{Performance Score}_i\\): This is the predicted score for a specific musician.\n\\(\\beta_0\\): This is the starting score for a musician, before considering any other factors.\n\\(\\beta_1\\): This represents the adjustment to the score based on a musician’s age.\n\\(\\beta_2\\): This represents the adjustment to the score based on a musician’s gender.\n\\(\\beta_3\\): This represents the adjustment to the score for the duration of practice.\n\\(\\beta_4\\): This represents the adjustment to the score for the specific instrument they play.\n\\(\\epsilon_i\\): This is a small adjustment for all the random factors that the model doesn’t account for."
+  },
+  {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "About this site"
+    "text": "My name is Paramanyu Gupta and I’m a student at Independence High School! You can find my work on GitHub and contact me at manish.gupta32@gmail.com.\nThis project, “Music Performance Analytics,” explores how various factors contribute to a musician’s proficiency and skill development. All the code and data are available in the GitHub repository.\nThis project was created as part of Kane’s Data Science Bootcamp."
   },
   {
     "objectID": "index.html",
@@ -19,5 +33,12 @@
     "title": "The Musician’s Journey: Factors Shaping Skill and Practice",
     "section": "",
     "text": "Have you ever truly considered what transforms an aspiring musician’s dedication into tangible skill, or how the hours spent practicing translate into a virtuoso performance? This project explores that very question by analyzing a dataset on music performance, and its findings are vividly presented in a series of faceted line graphs. Each graph, with Practice Duration (Minutes) on the X-axis and Overall Performance Score (0-100%) on the Y-axis, illustrates the strong, positive correlation between time invested and performance quality. We can observe this consistent upward trend across various instruments, with examples like the Guitar and Piano showing a clear, proportional increase in scores as practice time rises. Moreover, the data also highlights the importance of theoretical knowledge, as the panel for Theory Lessons similarly demonstrates a positive relationship. These findings collectively reinforce that sustained, focused practice is the most critical element in a musician’s development, paving the way for enhanced skill and superior performance."
+  },
+  {
+    "objectID": "sources.html",
+    "href": "sources.html",
+    "title": "Data Sources",
+    "section": "",
+    "text": "The data for this project comes from a simulated dataset designed to represent key aspects of music performance and learning. While the source is not a public repository like SCORE, it was meticulously generated to provide realistic scenarios for exploring the dynamics between practice habits, lesson types, and musical outcomes. This dataset includes a comprehensive set of records, enabling analysis of various factors contributing to a musician’s proficiency.\nThe original data was conceived to reflect typical progress and variations observed in music education, encompassing a range of skill levels and engagement patterns. It includes data points for individual musicians participating in different lesson contexts, providing a robust foundation for identifying trends in musical development.\nData cleaning involved several critical steps to ensure the integrity and analytical readiness of the dataset. Column names were standardized to improve readability and consistency. Crucially, categorical variables such as Class_Level (now learning_level), Lesson_Type (now lesson_context), Instrument, and Gender were explicitly converted to factor types to facilitate proper statistical analysis and visualization. Furthermore, any entries where Performance_Score exceeded 100% were identified as erroneous and subsequently filtered out, preventing misrepresentation in the analysis. No other observations were removed based on performance criteria; the goal was to maintain a complete representation of the generated data.\nThe dataset includes the following key variables:\n\npractice_duration_min: Focus time dedicated to practice (in minutes). This serves as a proxy for engagement.\nperformance_score: Overall musical performance score (0-100%).\nlearning_level: Categorical indicator of the musician’s proficiency (Beginner, Intermediate, Advanced).\nlesson_context: Type of lesson, differentiating between practical instrument lessons and theory lessons.\ninstrument: The musical instrument being played.\ngender: The gender of the musician.\nage: The age of the musician."
   }
 ]

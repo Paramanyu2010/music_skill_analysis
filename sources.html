@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>About – Music Performance Analytics</title>
+<title>Data Sources – Music Performance Analytics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -102,11 +102,11 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Model Details</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./sources.html"> 
+    <a class="nav-link active" href="./sources.html" aria-current="page"> 
 <span class="menu-text">Sources</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./about.html" aria-current="page"> 
+    <a class="nav-link" href="./about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -128,7 +128,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">About</h1>
+<h1 class="title">Data Sources</h1>
 </div>
 
 
@@ -145,9 +145,19 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>My name is Paramanyu Gupta and I’m a student at Independence High School! You can find my work on <a href="https://github.com/Paramanyu2010">GitHub</a> and contact me at manish.gupta32@gmail.com.</p>
-<p>This project, “Music Performance Analytics,” explores how various factors contribute to a musician’s proficiency and skill development. All the code and data are available in the <a href="https://github.com/Paramanyu2010/music-performance-analytics">GitHub repository</a>.</p>
-<p>This project was created as part of <a href="https://bootcamp.davidkane.info/">Kane’s Data Science Bootcamp</a>.</p>
+<p>The data for this project comes from a <strong>simulated dataset designed to represent key aspects of music performance and learning</strong>. While the source is not a public repository like SCORE, it was meticulously generated to provide realistic scenarios for exploring the dynamics between practice habits, lesson types, and musical outcomes. This dataset includes a comprehensive set of records, enabling analysis of various factors contributing to a musician’s proficiency.</p>
+<p>The original data was conceived to reflect typical progress and variations observed in music education, encompassing a range of skill levels and engagement patterns. It includes data points for individual musicians participating in different lesson contexts, providing a robust foundation for identifying trends in musical development.</p>
+<p>Data cleaning involved several critical steps to ensure the integrity and analytical readiness of the dataset. Column names were standardized to improve readability and consistency. Crucially, categorical variables such as <code>Class_Level</code> (now <code>learning_level</code>), <code>Lesson_Type</code> (now <code>lesson_context</code>), <code>Instrument</code>, and <code>Gender</code> were explicitly converted to factor types to facilitate proper statistical analysis and visualization. Furthermore, any entries where <code>Performance_Score</code> exceeded 100% were identified as erroneous and subsequently filtered out, preventing misrepresentation in the analysis. No other observations were removed based on performance criteria; the goal was to maintain a complete representation of the generated data.</p>
+<p>The dataset includes the following key variables:</p>
+<ul>
+<li><strong><code>practice_duration_min</code></strong>: Focus time dedicated to practice (in minutes). This serves as a proxy for engagement.</li>
+<li><strong><code>performance_score</code></strong>: Overall musical performance score (0-100%).</li>
+<li><strong><code>learning_level</code></strong>: Categorical indicator of the musician’s proficiency (Beginner, Intermediate, Advanced).</li>
+<li><strong><code>lesson_context</code></strong>: Type of lesson, differentiating between practical instrument lessons and theory lessons.</li>
+<li><strong><code>instrument</code></strong>: The musical instrument being played.</li>
+<li><strong><code>gender</code></strong>: The gender of the musician.</li>
+<li><strong><code>age</code></strong>: The age of the musician.</li>
+</ul>
 
 
 
