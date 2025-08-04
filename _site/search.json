@@ -1,0 +1,23 @@
+[
+  {
+    "objectID": "theory_vs_performance_plot.html",
+    "href": "theory_vs_performance_plot.html",
+    "title": "Impact of Theory Lesson Engagement on Performance Scores",
+    "section": "",
+    "text": "This plot shows how time spent on music theory lessons relates to a musician’s performance score. The horizontal axis represents the minutes spent on theory, and the vertical axis displays the performance score, from 0 to 100%. Each dot on the plot is an individual musician’s data, with different colors for Beginner, Intermediate, and Advanced learning levels. While the dots are spread out, which highlights that everyone learns a bit differently and progresses at their own pace, there’s a clear upward trend. This trend line suggests that generally, more time put into theory lessons leads to slightly better performance scores. So, even with individual variations, understanding music theory seems to give a small but consistent boost to overall musical skill."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "The Musician’s Journey: Factors Shaping Skill and Practice",
+    "section": "",
+    "text": "Have you ever truly considered what transforms an aspiring musician’s dedication into tangible skill, or how the hours spent practicing translate into a virtuoso performance? This project explores that very question by analyzing a dataset on music performance, and its findings are vividly presented in a series of faceted line graphs. Each graph, with Practice Duration (Minutes) on the X-axis and Overall Performance Score (0-100%) on the Y-axis, illustrates the strong, positive correlation between time invested and performance quality. We can observe this consistent upward trend across various instruments, with examples like the Guitar and Piano showing a clear, proportional increase in scores as practice time rises. Moreover, the data also highlights the importance of theoretical knowledge, as the panel for Theory Lessons similarly demonstrates a positive relationship. These findings collectively reinforce that sustained, focused practice is the most critical element in a musician’s development, paving the way for enhanced skill and superior performance."
+  }
+]

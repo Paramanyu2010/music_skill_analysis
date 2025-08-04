@@ -1,0 +1,9 @@
+---
+title: "About"
+---
+
+My name is Paramanyu Gupta and I'm a student at Independence High School! You can find my work on [GitHub](https://github.com/Paramanyu2010) and contact me at manish.gupta32@gmail.com.
+
+This project, "Music Performance Analytics," explores how various factors contribute to a musician's proficiency and skill development. All the code and data are available in the [GitHub repository](https://github.com/Paramanyu2010/music-performance-analytics).
+
+This project was created as part of [Kane's Data Science Bootcamp](https://bootcamp.davidkane.info/).

@@ -1,6 +1,5 @@
 ---
 title: "The Musician's Journey: Factors Shaping Skill and Practice"
-author: "Paramanyu Gupta"
 format: html
 execute:
   echo: false # This setting hides all R code from displaying in the output by default

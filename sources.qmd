@@ -1,0 +1,19 @@
+---
+title: "Data Sources"
+---
+
+The data for this project comes from a **simulated dataset designed to represent key aspects of music performance and learning**. While the source is not a public repository like SCORE, it was meticulously generated to provide realistic scenarios for exploring the dynamics between practice habits, lesson types, and musical outcomes. This dataset includes a comprehensive set of records, enabling analysis of various factors contributing to a musician's proficiency.
+
+The original data was conceived to reflect typical progress and variations observed in music education, encompassing a range of skill levels and engagement patterns. It includes data points for individual musicians participating in different lesson contexts, providing a robust foundation for identifying trends in musical development.
+
+Data cleaning involved several critical steps to ensure the integrity and analytical readiness of the dataset. Column names were standardized to improve readability and consistency. Crucially, categorical variables such as `Class_Level` (now `learning_level`), `Lesson_Type` (now `lesson_context`), `Instrument`, and `Gender` were explicitly converted to factor types to facilitate proper statistical analysis and visualization. Furthermore, any entries where `Performance_Score` exceeded 100% were identified as erroneous and subsequently filtered out, preventing misrepresentation in the analysis. No other observations were removed based on performance criteria; the goal was to maintain a complete representation of the generated data.
+
+The dataset includes the following key variables:
+
+* **`practice_duration_min`**: Focus time dedicated to practice (in minutes). This serves as a proxy for engagement.
+* **`performance_score`**: Overall musical performance score (0-100%).
+* **`learning_level`**: Categorical indicator of the musician's proficiency (Beginner, Intermediate, Advanced).
+* **`lesson_context`**: Type of lesson, differentiating between practical instrument lessons and theory lessons.
+* **`instrument`**: The musical instrument being played.
+* **`gender`**: The gender of the musician.
+* **`age`**: The age of the musician.
