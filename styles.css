@@ -87,29 +87,25 @@ tbody tr:last-of-type {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* A subtle shadow for depth */
 }
 
-/* New: Custom styling for the navbar to make it cream-colored */
+/* Corrected Navbar Styling */
 .navbar {
-    background-color: #f8f4e3 !important; /* Apply the soft cream background */
-    border-bottom: 1px solid #d2b7e5; /* Optional: Add a subtle border */
+    background-color: #6B4527 !important; /* The bar itself is rich brown */
 }
-.navbar-brand {
-    color: #6B4527 !important; /* Make the brand text rich brown against cream */
+.navbar-brand, .navbar .nav-link {
+    color: #f8f4e3 !important; /* Navbar links and brand are soft cream */
 }
-.navbar-nav .nav-link { /* Target the links within the navbar */
-    color: #6B4527 !important; /* Make link text rich brown */
-}
-.navbar-nav .nav-link:hover {
-    color: #B8860B !important; /* Keep the muted gold hover */
-}
-.navbar-toggler-icon { /* Style the hamburger menu icon */
-    background-color: #6B4527 !important;
+.navbar .nav-link:hover {
+    color: #B8860B !important; /* Links hover to muted gold */
 }
 
-/* Styling for potential search input elements */
-.form-control { /* This is a common class for input fields */
-    background-color: #f8f4e3 !important;
+/* Styling for the search input and menu button */
+.form-control, .navbar-toggler {
+    background-color: #f8f4e3 !important; /* Search button/input background is cream */
     border: 1px solid #d2b7e5;
     color: #4a4a4a;
+}
+.navbar-toggler-icon { /* Hamburger icon color */
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%236B4527' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
 }
 
 /* Styling for horizontally scrollable math formulas */
@@ -119,6 +115,12 @@ tbody tr:last-of-type {
 }
 
 /* New: CSS to remove indentation from TOC headers */
+.quarto-title-block + .quarto-layout-panel .quarto-sidebar-layout-panel nav#quarto-toc ul li a {
+    margin-left: 0 !important;
+    padding-left: 10px !important;
+}
+
+/* Fallback for nested lists in TOC if they exist */
 .quarto-title-block + .quarto-layout-panel .quarto-sidebar-layout-panel nav#quarto-toc ul ul li a {
     margin-left: 0 !important;
     padding-left: 10px !important;
