@@ -145,6 +145,7 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<div class="content-box">
 <p>The data for this project comes from a <strong>simulated dataset designed to represent key aspects of music performance and learning</strong>. While the source is not a public repository like SCORE, it was meticulously generated to provide realistic scenarios for exploring the dynamics between practice habits, lesson types, and musical outcomes. This dataset includes a comprehensive set of records, enabling analysis of various factors contributing to a musician’s proficiency.</p>
 <p>The original data was conceived to reflect typical progress and variations observed in music education, encompassing a range of skill levels and engagement patterns. It includes data points for individual musicians participating in different lesson contexts, providing a robust foundation for identifying trends in musical development.</p>
 <p>Data cleaning involved several critical steps to ensure the integrity and analytical readiness of the dataset. Column names were standardized to improve readability and consistency. Crucially, categorical variables such as <code>Class_Level</code> (now <code>learning_level</code>), <code>Lesson_Type</code> (now <code>lesson_context</code>), <code>Instrument</code>, and <code>Gender</code> were explicitly converted to factor types to facilitate proper statistical analysis and visualization. Furthermore, any entries where <code>Performance_Score</code> exceeded 100% were identified as erroneous and subsequently filtered out, preventing misrepresentation in the analysis. No other observations were removed based on performance criteria; the goal was to maintain a complete representation of the generated data.</p>
@@ -158,6 +159,7 @@ ul.task-list li input[type="checkbox"] {
 <li><strong><code>gender</code></strong>: The gender of the musician.</li>
 <li><strong><code>age</code></strong>: The age of the musician.</li>
 </ul>
+</div>
 
 
 
