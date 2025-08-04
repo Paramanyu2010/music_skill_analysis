@@ -3,19 +3,21 @@ project:
 
 website:
   title: "Music Performance Analytics"
+  toc: true
   navbar:
     left:
       - href: index.qmd
         text: Home
-      - about.qmd
+      - href: theory_vs_performance_plot.qmd
+        text: Theory vs Performance Plot
+      - href: model.qmd
+        text: Model Details
+      - href: sources.qmd
+        text: Sources
+      - href: about.qmd
+        text: About
 
 format:
   html:
-    theme:
-      - cosmo
-      - brand
+    theme: cosmo
     css: styles.css
-    toc: true
-
-
-

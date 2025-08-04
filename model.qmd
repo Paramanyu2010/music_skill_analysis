@@ -1,0 +1,26 @@
+---
+---
+
+# Understanding the Performance Model
+
+This section describes the formula we used to understand how different factors relate to a musician's overall performance score. Instead of just looking at one thing, we used a comprehensive model to analyze several predictors at the same time, including a musician's age, gender, amount of practice, and the instrument or lesson type they are focusing on. This helps us get a more complete picture of what influences performance.
+
+This model is a mathematical representation of the trends you see in the plot on the home page.
+
+## Model Specification
+
+The formula we used to predict a musician's performance score looks like this:
+
+$$
+\text{Performance Score}_i = \beta_0 + \beta_1 \cdot \text{Age}_i + \beta_2 \cdot \text{Gender}_i + \beta_3 \cdot \text{Practice Duration}_i + \beta_4 \cdot \text{Instrument}_i + \epsilon_i
+$$
+
+Here's a simple breakdown of what each part of the formula represents:
+
+* **$\text{Performance Score}_i$**: This is the predicted score for a specific musician.
+* **$\beta_0$**: This is the starting score for a musician, before considering any other factors.
+* **$\beta_1$**: This represents the adjustment to the score based on a musician's age.
+* **$\beta_2$**: This represents the adjustment to the score based on a musician's gender.
+* **$\beta_3$**: This represents the adjustment to the score for the duration of practice.
+* **$\beta_4$**: This represents the adjustment to the score for the specific instrument they play.
+* **$\epsilon_i$**: This is a small adjustment for all the random factors that the model doesn't account for.

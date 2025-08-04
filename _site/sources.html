@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>The Musician’s Journey: Factors Shaping Skill and Practice – Music Performance Analytics</title>
+<title>Data Sources – Music Performance Analytics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -90,7 +90,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="./index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
@@ -116,7 +116,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">The Musician’s Journey: Factors Shaping Skill and Practice</h1>
+<h1 class="title">Data Sources</h1>
 </div>
 
 
@@ -133,16 +133,19 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/performance-vs-practice-plot-1.png" class="img-fluid figure-img" width="1344"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Have you ever truly considered what transforms an aspiring musician’s dedication into tangible skill, or how the hours spent practicing translate into a virtuoso performance? This project explores that very question by analyzing a dataset on music performance, and its findings are vividly presented in a series of faceted line graphs. Each graph, with Practice Duration (Minutes) on the X-axis and Overall Performance Score (0-100%) on the Y-axis, illustrates the strong, positive correlation between time invested and performance quality. We can observe this consistent upward trend across various instruments, with examples like the Guitar and Piano showing a clear, proportional increase in scores as practice time rises. Moreover, the data also highlights the importance of theoretical knowledge, as the panel for Theory Lessons similarly demonstrates a positive relationship. These findings collectively reinforce that sustained, focused practice is the most critical element in a musician’s development, paving the way for enhanced skill and superior performance.</p>
+<p>The data for this project comes from a <strong>simulated dataset designed to represent key aspects of music performance and learning</strong>. While the source is not a public repository like SCORE, it was meticulously generated to provide realistic scenarios for exploring the dynamics between practice habits, lesson types, and musical outcomes. This dataset includes a comprehensive set of records, enabling analysis of various factors contributing to a musician’s proficiency.</p>
+<p>The original data was conceived to reflect typical progress and variations observed in music education, encompassing a range of skill levels and engagement patterns. It includes data points for individual musicians participating in different lesson contexts, providing a robust foundation for identifying trends in musical development.</p>
+<p>Data cleaning involved several critical steps to ensure the integrity and analytical readiness of the dataset. Column names were standardized to improve readability and consistency. Crucially, categorical variables such as <code>Class_Level</code> (now <code>learning_level</code>), <code>Lesson_Type</code> (now <code>lesson_context</code>), <code>Instrument</code>, and <code>Gender</code> were explicitly converted to factor types to facilitate proper statistical analysis and visualization. Furthermore, any entries where <code>Performance_Score</code> exceeded 100% were identified as erroneous and subsequently filtered out, preventing misrepresentation in the analysis. No other observations were removed based on performance criteria; the goal was to maintain a complete representation of the generated data.</p>
+<p>The dataset includes the following key variables:</p>
+<ul>
+<li><strong><code>practice_duration_min</code></strong>: Focus time dedicated to practice (in minutes). This serves as a proxy for engagement.</li>
+<li><strong><code>performance_score</code></strong>: Overall musical performance score (0-100%).</li>
+<li><strong><code>learning_level</code></strong>: Categorical indicator of the musician’s proficiency (Beginner, Intermediate, Advanced).</li>
+<li><strong><code>lesson_context</code></strong>: Type of lesson, differentiating between practical instrument lessons and theory lessons.</li>
+<li><strong><code>instrument</code></strong>: The musical instrument being played.</li>
+<li><strong><code>gender</code></strong>: The gender of the musician.</li>
+<li><strong><code>age</code></strong>: The age of the musician.</li>
+</ul>
 
 
 
