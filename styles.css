@@ -54,35 +54,3 @@ thead tr {
 th, td {
     padding: 12px 15px;
     border: 1px solid #ddd; /* Light gray borders */
-}
-
-tbody tr {
-    border-bottom: 1px solid #dddddd;
-}
-
-tbody tr:nth-of-type(even) {
-    background-color: #f3f3f3; /* Zebra stripes for readability */
-}
-
-tbody tr:last-of-type {
-    border-bottom: 2px solid #6B4527;
-}
-
-/* Figure and Plot Styles */
-.figure {
-    margin: 20px 0;
-    padding: 10px;
-    border: 1px solid #ccc;
-    background-color: #fff;
-    border-radius: 5px;
-}
-
-/* New: Styling for a general "white box" around content */
-.content-box {
-    background-color: #ffffff; /* White background */
-    border: 1px solid #e0e0e0; /* A very light gray border */
-    border-radius: 8px; /* Slightly rounded corners */
-    padding: 20px; /* Space inside the box */
-    margin: 20px 0; /* Space outside the box */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* A subtle shadow for depth */
-}
