@@ -1,1 +1,78 @@
-/* css styles */
+/* General Body and Text Styles */
+body {
+    font-family: 'Georgia', serif; /* Classic serif font */
+    color: #4a4a4a; /* Dark gray for text */
+    background-color: #f8f4e3; /* Soft cream background */
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+/* Headers - Titles and Subtitles */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Times New Roman', serif; /* Using a different serif for headings */
+    color: #6B4527; /* Rich brown color for headings */
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+h1 {
+    font-size: 2.5em;
+    border-bottom: 2px solid #D2B7E5; /* This could be changed to a warm color if you like */
+    padding-bottom: 10px;
+}
+
+/* Links and Navigation */
+a {
+    color: #B8860B; /* Muted gold for links */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #8B6309; /* A slightly darker gold on hover */
+    text-decoration: underline;
+}
+
+/* Table Styles - for your parameter estimates table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    background-color: white;
+}
+
+thead tr {
+    background-color: #6B4527; /* Header row matches heading color */
+    color: #ffffff; /* White text on dark header */
+    text-align: left;
+}
+
+th, td {
+    padding: 12px 15px;
+    border: 1px solid #ddd; /* Light gray borders */
+}
+
+tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3; /* Zebra stripes for readability */
+}
+
+tbody tr:last-of-type {
+    border-bottom: 2px solid #6B4527;
+}
+
+/* Figure and Plot Styles */
+.figure {
+    margin: 20px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    border-radius: 5px;
+}
