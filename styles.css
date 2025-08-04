@@ -87,19 +87,39 @@ tbody tr:last-of-type {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* A subtle shadow for depth */
 }
 
-/* Custom styling to fix the navbar color */
+/* New: Custom styling for the navbar to make it cream-colored */
 .navbar {
-    background-color: #6B4527 !important; /* Rich brown from your palette */
+    background-color: #f8f4e3 !important; /* Apply the soft cream background */
+    border-bottom: 1px solid #d2b7e5; /* Optional: Add a subtle border */
 }
-.navbar-brand, .navbar .nav-link {
-    color: #f8f4e3 !important; /* Soft cream text for better contrast */
+.navbar-brand {
+    color: #6B4527 !important; /* Make the brand text rich brown against cream */
 }
-.navbar .nav-link:hover {
-    color: #B8860B !important; /* Muted gold on hover */
+.navbar-nav .nav-link { /* Target the links within the navbar */
+    color: #6B4527 !important; /* Make link text rich brown */
+}
+.navbar-nav .nav-link:hover {
+    color: #B8860B !important; /* Keep the muted gold hover */
+}
+.navbar-toggler-icon { /* Style the hamburger menu icon */
+    background-color: #6B4527 !important;
+}
+
+/* Styling for potential search input elements */
+.form-control { /* This is a common class for input fields */
+    background-color: #f8f4e3 !important;
+    border: 1px solid #d2b7e5;
+    color: #4a4a4a;
 }
 
 /* Styling for horizontally scrollable math formulas */
 .math-scroll {
-  overflow-x: auto;
-  white-space: nowrap;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+/* New: CSS to remove indentation from TOC headers */
+.quarto-title-block + .quarto-layout-panel .quarto-sidebar-layout-panel nav#quarto-toc ul ul li a {
+    margin-left: 0 !important;
+    padding-left: 10px !important;
 }
